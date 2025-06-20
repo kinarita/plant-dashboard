@@ -157,7 +157,7 @@ def index():
     
     time_condition = time_conditions.get(range_param, time_conditions["24h"])
     
-    conn = sqlite3.connect("sensor_data.db")
+    conn = sqlite3.connect(DST)
     cursor = conn.cursor()
     
     # テーブル名を確認して適切なものを使用
@@ -923,18 +923,31 @@ def index():
 @post('/upload')
 def upload_db():
     upload = request.files.get('dbfile')
+    print("✅ リクエスト受信")
+
     if not upload:
+        print("❌ ファイルが存在しません")
         return "No file received."
 
     upload_path = '/app/db/sensor_data.db'
     backup_path = '/app/db/sensor_data_backup.db'
 
+    print(f"📦 アップロードファイル名: {upload.filename}")
+
     # バックアップ作成
     if os.path.exists(upload_path):
+        print("🗂️ 既存DBをバックアップ中...")
         os.rename(upload_path, backup_path)
 
-    upload.save(upload_path)
-    return "Upload successful"
+    try:
+        upload.save(upload_path)
+        print("✅ 新しいDBファイルを保存しました")
+        return "Upload successful"
+    except Exception as e:
+        print(f"❌ 保存失敗: {e}")
+        return f"Upload failed: {str(e)}"
+
+
 
 @route('/api/data')
 def api_data():
