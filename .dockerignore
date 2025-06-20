@@ -1,0 +1,18 @@
+# 🚫 Raspberry Pi用のローカルスクリプト
+upload_db.py
+
+# 🚫 Windows用ツール類
+flyctl.exe
+wintun.dll
+
+# 🚫 Pythonキャッシュファイル
+__pycache__/
+*.pyc
+
+# 🚫 ログや一時ファイル（任意）
+*.log
+
+# ✅ sensor_data.db は含めたいので *.db は使わない
+# 他の.dbファイルは手動で指定
+#other_data.db
+#backup.db
