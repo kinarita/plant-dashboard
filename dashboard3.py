@@ -165,13 +165,13 @@ def index():
     
     # 時間条件の設定
     time_conditions = {
-        "1h": "datetime('now', '-1 hours')",
-        "6h": "datetime('now', '-6 hours')",
-        "12h": "datetime('now', '-12 hours')",
-        "24h": "datetime('now', '-1 days')",
-        "3d": "datetime('now', '-3 days')",
-        "7d": "datetime('now', '-7 days')",
-        "30d": "datetime('now', '-30 days')"
+        "1h": "datetime('now', '-1 hours', '+9 hours')",
+        "6h": "datetime('now', '-6 hours', '+9 hours')",
+        "12h": "datetime('now', '-12 hours', '+9 hours')",
+        "24h": "datetime('now', '-1 days', '+9 hours')",
+        "3d": "datetime('now', '-3 days', '+9 hours')",
+        "7d": "datetime('now', '-7 days', '+9 hours')",
+        "30d": "datetime('now', '-30 days', '+9 hours')"
     }
     
     time_condition = time_conditions.get(range_param, time_conditions["24h"])
@@ -1344,14 +1344,17 @@ def api_data():
     screen_width = int(request.query.width or "1200")
     
     time_conditions = {
-        "1h": "datetime('now', '-1 hours')",
-        "6h": "datetime('now', '-6 hours')",
-        "12h": "datetime('now', '-12 hours')",
-        "24h": "datetime('now', '-1 days')",
-        "3d": "datetime('now', '-3 days')",
-        "7d": "datetime('now', '-7 days')",
-        "30d": "datetime('now', '-30 days')"
+        "1h": "datetime('now', '-1 hours', '+9 hours')",
+        "6h": "datetime('now', '-6 hours', '+9 hours')",
+        "12h": "datetime('now', '-12 hours', '+9 hours')",
+        "24h": "datetime('now', '-1 days', '+9 hours')",
+        "3d": "datetime('now', '-3 days', '+9 hours')",
+        "7d": "datetime('now', '-7 days', '+9 hours')",
+        "30d": "datetime('now', '-30 days', '+9 hours')"
     }
+
+
+
     
     time_condition = time_conditions.get(range_param, time_conditions["24h"])
     
