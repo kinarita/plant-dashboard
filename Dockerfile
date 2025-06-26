@@ -5,6 +5,7 @@ COPY . .
 
 # sensor_data.db をイメージ内にコピー（initスクリプトで移動）
 COPY sensor_data.db /app/init/sensor_data.db
+COPY .env /app/.env
 
 RUN pip install --no-cache-dir -r requirements.txt
 

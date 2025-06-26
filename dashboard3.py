@@ -1,10 +1,28 @@
-from bottle import route, run, template, request, static_file, response, post
+from bottle import route, run, template, request, static_file, response, post, HTTPResponse
 import sqlite3
 from datetime import datetime, timedelta
 import json
 import re
 import os
 import shutil
+from dotenv import load_dotenv
+load_dotenv()
+
+USERNAME = os.getenv("BASIC_AUTH_USER")
+PASSWORD = os.getenv("BASIC_AUTH_PASS")
+
+def check_auth():
+    auth = request.auth
+    if auth is None or auth[0] != USERNAME or auth[1] != PASSWORD:
+        return False
+    return True
+
+def require_basic_auth(func):
+    def wrapper(*args, **kwargs):
+        if not check_auth():
+            return HTTPResponse(status=401, headers={'WWW-Authenticate': 'Basic realm="Login Required'})
+        return func(*args, **kwargs)
+    return wrapper
 
 SRC = "/app/init/sensor_data.db"
 DST = "/app/db/sensor_data.db"
@@ -137,6 +155,7 @@ def get_optimal_time_format(range_param, aggregate_param, data_count, screen_wid
     return rule
 
 @route('/')
+@require_basic_auth
 def index():
     # クエリパラメータから設定を取得
     range_param = request.query.range or "24h"
