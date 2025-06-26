@@ -690,6 +690,10 @@ def index():
                     font-size: 0.85rem;
                     color: var(--dark-green);
                 }
+                .unit {
+                    font-size: 0.7em;
+                    margin-right: 4px;
+                }
                 
                 canvas { 
                     max-height: 400px;
@@ -806,18 +810,18 @@ def index():
                 <!-- 統計カード -->
                 <div class="stats">
                     <div class="stat-card">
-                        <div class="stat-title temp">🌡️ 温度 (℃)</div>
-                        <div class="stat-value temp">{{statistics['temperature']['avg']}}</div>
+                        <div class="stat-title temp">🌡️ 温度</div>
+                        <div class="stat-value temp">{{statistics['temperature']['avg']}}<span class="unit"> ℃</span></div>
                         <div class="stat-range">範囲: {{statistics['temperature']['min']}} ~ {{statistics['temperature']['max']}}</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-title humidity">💧 湿度 (%)</div>
-                        <div class="stat-value humidity">{{statistics['humidity']['avg']}}</div>
+                        <div class="stat-title humidity">💧 湿度</div>
+                        <div class="stat-value humidity">{{statistics['humidity']['avg']}}<span class="unit"> %</span></div>
                         <div class="stat-range">範囲: {{statistics['humidity']['min']}} ~ {{statistics['humidity']['max']}}</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-title moisture">🌱 土壌湿度 (%)</div>
-                        <div class="stat-value moisture">{{statistics['soil_moisture']['avg']}}</div>
+                        <div class="stat-title moisture">🌱 土壌湿度</div>
+                        <div class="stat-value moisture">{{statistics['soil_moisture']['avg']}}<span class="unit"> %</span></div>
                         <div class="stat-range">範囲: {{statistics['soil_moisture']['min']}} ~ {{statistics['soil_moisture']['max']}}</div>
                     </div>
                 </div>
