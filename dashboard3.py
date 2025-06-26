@@ -743,7 +743,7 @@ def index():
             <div class="container">
                 <div class="header">
                     <h1>🌱 植物管理ダッシュボード</h1>
-                    <p>IoTセンサーによるリアルタイム環境監視システム</p>
+                    <p>IoTセンサーによる環境監視システム</p>
                     <div class="sensor-location">
                         📍 現在表示中: <strong>{{current_location}}</strong>
                     </div>
